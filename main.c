@@ -1,29 +1,30 @@
-double a2d(char* numero){
+double a2d(char* numero){   //conversor de string para double
     int valorinteiro = 0;
     int i = 0;
     int tamanho = strlen(numero);
-    float f = 1.0;
+    float decimal = 1;
     float valordecimal = 0;
 
-    if(!tamanho){
+    if(!tamanho){   //caso o tamanho seja nulo a funcao retornara a mensagem e o return 0
         printf("NUMERO NAO EXISTE");
         return 0;
     }
     
-    while(i < tamanho && numero[i] != '.'){
+    while(i < tamanho && numero[i] != '.'){ //calcula o numero antes da virgula
         valorinteiro = 10 * valorinteiro + (numero[i++] - '0');
     }
-    //verifica se o numero e inteiro ou quebrado 
-    if(i==tamanho){
+
+    if(i == tamanho){       //verifica se o numero e inteiro ou quebrado 
       return valorinteiro;  
     } 
     i++;
-    while(i < tamanho){
-        f = f * 0.1;
-        valordecimal = valordecimal + f * (numero[i++] - '0');
+    while(i < tamanho){ //calcula a parte decimal do numero
+        decimal = decimal * 0.1;
+        valordecimal = valordecimal + decimal * (numero[i] - '0');
+        i++;
     }
 
-    return valordecimal + valorinteiro;
+    return valordecimal + valorinteiro; // retorna a soma entre a parte decimal e a parte fracionaria
 }
 
 int main(){
